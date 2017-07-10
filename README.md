@@ -1,4 +1,4 @@
-# ember-sauce-toolkit
+# Ember Sauce Toolkit
 
 A set of tools and utils for Ember
 
@@ -24,4 +24,13 @@ module.exports = function(environment) {
   };
   return ENV;
 };
+```
+
+### Output
+
+```
+[Mon Jul 10 2017 14:06:49 GMT+0100 (BST)][development][WEB] My log message 1
+[Mon Jul 10 2017 14:06:49 GMT+0100 (BST)][development][WEB] Other message
+[Mon Jul 10 2017 14:06:49 GMT+0100 (BST)][development][WEB] Error: Something could not be found
+
 ```
