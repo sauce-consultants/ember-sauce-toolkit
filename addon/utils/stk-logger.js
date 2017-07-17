@@ -3,9 +3,9 @@ import Ember from 'ember';
 export default Ember.Object.extend({
   staticPrefix: null,
   _parentLogger: Ember.Logger,
-  _bufferEnabled: true,
+  _bufferEnabled: false,
   _maxBufferLength: 100,
-  logBuffer: [],
+  buffer: [],
   _buildPrefix: function() {
     return `[${new Date()}]${this.staticPrefix}`;
   },
@@ -38,10 +38,10 @@ export default Ember.Object.extend({
       }
     }).join('');
 
-    this.logBuffer.push(message);
+    this.buffer.push(message);
 
-    if(this._maxBufferLength && this.logBuffer.length > this._maxBufferLength) {
-      this.logBuffer.splice(0,this.logBuffer.length - this._maxBufferLength);
+    if(this._maxBufferLength && this.buffer.length > this._maxBufferLength) {
+      this.buffer.splice(0,this.buffer.length - this._maxBufferLength);
     }
   },
   assert: function(args) {

@@ -24,7 +24,20 @@ export function initialize(appInstance) {
     }
 
     let parentLogger = Ember.Logger;
-    Ember.Logger = STKLogger.create({staticPrefix: staticPrefix, _parentLogger: parentLogger});
+
+    let loggerProperties = {staticPrefix: staticPrefix, _parentLogger: parentLogger};
+    if(loggerConfig.enableBuffer)
+    {
+      loggerProperties._bufferEnabled = true;
+    }
+
+    if(loggerConfig.maxBufferLength !== undefined)
+    {
+      loggerProperties._maxBufferLength = loggerConfig.maxBufferLength;
+    }
+
+
+    Ember.Logger = STKLogger.create(loggerProperties);
   }
 }
 

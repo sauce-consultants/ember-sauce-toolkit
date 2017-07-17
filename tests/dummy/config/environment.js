@@ -23,7 +23,8 @@ module.exports = function(environment) {
     },
     stk: {
       logger: {
-
+        enableBuffer: true,
+        maxBufferLength: false
       }
     }
   };
