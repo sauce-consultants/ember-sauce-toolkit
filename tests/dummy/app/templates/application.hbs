@@ -1,5 +1,2 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
+{{#stk-app-env-scope as |env|}}This app's environment is : {{env.environment}}{{/stk-app-env-scope}}
 {{outlet}}

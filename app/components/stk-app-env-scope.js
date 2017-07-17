@@ -1,0 +1,1 @@
+export { default } from 'ember-sauce-toolkit/components/stk-app-env-scope';
