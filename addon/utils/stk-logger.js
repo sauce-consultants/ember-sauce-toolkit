@@ -20,15 +20,24 @@ export default Ember.Object.extend({
       {
         //Basic circular reference detection // https://stackoverflow.com/questions/11616630/json-stringify-avoid-typeerror-converting-circular-structure-to-json
         var objectCache = [];
-        var stringifiedObject = JSON.stringify(messagePart, function(key, value) {
-          if (typeof value === 'object' && value !== null) {
-            if (objectCache.indexOf(value) !== -1) {
-              return '[Circular]';
+        var stringifiedObject;
+        try
+        {
+          stringifiedObject = JSON.stringify(messagePart, function(key, value) {
+            if (typeof value === 'object' && value !== null) {
+              if (objectCache.indexOf(value) !== -1) {
+                return '[Circular]';
+              }
+              objectCache.push(value);
             }
-            objectCache.push(value);
-          }
-          return value;
-        });
+            return value;
+          });
+        }
+        catch(e)
+        {
+          console.log("stk-logger Error stringifying log message part, ",e);
+          stringifiedObject = e.toString();
+        }
         objectCache = null;
         return stringifiedObject;
       }
